@@ -7,6 +7,9 @@ ARG MYSQL_CONNECT_JAVA=8.0.33
 
 WORKDIR /opt
 
+RUN sed -i s/deb.debian.org/mirrors.ustc.edu.cn/g /etc/apt/sources.list
+RUN apt update && apt-get install -y curl
+
 # Download hive and hadoop
 RUN curl -L https://mirrors.ustc.edu.cn/apache/hive/hive-${METASTORE_VERSION}/apache-hive-${METASTORE_VERSION}-bin.tar.gz | tar -xzC . && \
     ln -s /opt/apache-hive-${METASTORE_VERSION}-bin /opt/hive
