@@ -20,4 +20,4 @@ else
 fi
 
 echo "Starting Hive metastore "
-${HIVE_HOME}/bin/start-metastore
+${HIVE_HOME}/bin/hive --service metastore
