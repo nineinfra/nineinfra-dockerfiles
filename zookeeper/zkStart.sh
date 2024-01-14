@@ -1,0 +1,7 @@
+#!/bin/sh
+
+ZOOKEEPER_ID=${POD_NAME##*-}
+ZOOKEEPER_ID=$((ZOOKEEPER_ID+1))
+ZOOKEEPER_DATA_DIR=$ZOOKEEPER_HOME/data
+echo $ZOOKEEPER_ID > $ZOOKEEPER_DATA_DIR/myid
+exec $ZOOKEEPER_HOME/bin/zkServer.sh start-foreground

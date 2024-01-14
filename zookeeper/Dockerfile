@@ -12,8 +12,8 @@ RUN curl -sLO https://mirrors.ustc.edu.cn/apache/zookeeper/zookeeper-${ZOOKEEPER
 
 ENV ZOOKEEPER_HOME=/opt/zookeeper
 
+COPY ./zkStart.sh $ZOOKEEPER_HOME/bin/zkStart.sh
+
 WORKDIR /opt/zookeeper
 
-ENTRYPOINT ["/opt/zookeeper/bin/zkServer.sh"]
-
-CMD ["start-foreground"]
+ENTRYPOINT ["/opt/zookeeper/bin/zkStart.sh"]
