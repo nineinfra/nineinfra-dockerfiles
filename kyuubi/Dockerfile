@@ -113,6 +113,6 @@ RUN chown -R kyuubi:root ${KYUUBI_HOME} && \
     chmod ug+rw -R ${KYUUBI_HOME} && \
     chmod a+rwx -R ${KYUUBI_WORK_DIR_ROOT}
 
-CMD [ "./bin/kyuubi", "run" ]
+CMD [ "./bin/kyuubi", "run","--conf","kyuubi.frontend.bind.host=${POD_IP}" ]
 
 USER ${kyuubi_uid}
