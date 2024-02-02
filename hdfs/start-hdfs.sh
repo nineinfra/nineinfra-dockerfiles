@@ -110,4 +110,8 @@ fi
 
 # Start the HDFS NameNode process
 echo "Starting HDFS $HDFS_ROLE..."
-exec hdfs $HDFS_ROLE
+if [ $HDFS_ROLE = "httpfs" ]; then
+  exec hdfs --daemon start $HDFS_ROLE
+else
+  exec hdfs $HDFS_ROLE
+fi

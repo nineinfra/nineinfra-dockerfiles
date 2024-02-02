@@ -15,13 +15,12 @@ RUN sed -i s/archive.ubuntu.com/mirrors.ustc.edu.cn/g /etc/apt/sources.list && \
     rm /hadoop-$HADOOP_VERSION.tar.gz && \
     mv hadoop-$HADOOP_VERSION $HADOOP_HOME && \
     mkdir -p $HADOOP_HOME/logs && \
-    mkdir -p $HADOOP_HOME/conf
+    mkdir -p $HADOOP_HOME/conf && \
+    mkdir -p $HADOOP_HOME/temp
 
 WORKDIR $HADOOP_HOME
 COPY start-hdfs.sh $HADOOP_HOME/sbin/
-COPY log4j.properties $HADOOP_HOME/conf/
-COPY core-site.xml.default $HADOOP_HOME/conf/
-COPY hdfs-site.xml.default $HADOOP_HOME/conf/
-ENV HADOOP_CONF_DIR $HADOOP_HOME/conf
+ENV HADOOP_CONF_DIR $HADOOP_HOME/etc/hadoop
+ENV HADOOP_LOG_DIR $HADOOP_HOME/logs
 
 CMD ["sbin/start-hdfs.sh"]
