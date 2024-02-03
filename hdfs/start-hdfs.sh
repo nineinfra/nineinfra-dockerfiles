@@ -1,6 +1,16 @@
 #!/bin/bash
 set -e
 
+HADOOP_ENV=$HADOOP_CONF_DIR/hadoop-env.sh
+[ -f $HADOOP_HDFS_ENV ] && {
+  source $HADOOP_ENV
+}
+
+HTTPFS_ENV=$HADOOP_CONF_DIR/httpfs-env.sh
+[ -f $HTTPFS_ENV ] && {
+  source $HTTPFS_ENV
+}
+
 check_service_ports() {
     local NODE_LIST_VAR=$1  # 接收环境变量名称作为参数
     local SERVICE_PORT_VAR=$2  # 接收服务端口环境变量名称作为参数
@@ -78,6 +88,7 @@ if [ $HDFS_ROLE = "namenode" ]; then
     fi
   elif [ "$NAMENODE_ID" == "1" ]; then
     if [ ! -e "$NAMENODE_FORMATTED_FLAG_FILE" ]; then
+      check_service_ports $NN0_NODE $NN_RPC_PORT "NameNode0"
       echo "Initializing HDFS NameNode In Standby Mode..."
       hdfs namenode -bootstrapStandby -nonInteractive
       if [ $? -ne 0 ]; then
