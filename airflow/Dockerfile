@@ -18,4 +18,5 @@ RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple apache-airflow-provi
     apache-airflow-providers-apache-drill apache-airflow-providers-apache-pinot apache-airflow-providers-apache-sqoop  \
     apache-airflow-providers-mongo apache-airflow-providers-neo4j apache-airflow-providers-presto \
     apache-airflow-providers-trino apache-airflow-providers-alibaba apache-airflow-providers-dingding \
-    apache-airflow-providers-vertica
+    apache-airflow-providers-vertica airflow-code-editor black fs-s3fs fs-gcsfs \
+    && pip install -U kubernetes apache-airflow-providers-cncf-kubernetes
